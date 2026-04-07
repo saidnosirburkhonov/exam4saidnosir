@@ -1,0 +1,17 @@
+1: SOH
+heapda GC ning performance ni oshirish uchun uni 3ta qismga bolingan
+ular: loh, soh va poh
+soh (small object heap) qismi gen0, gen1, gen2 degan qismlardan iborat
+gen0 da yangi yaratilgan va hajmi kichina bolgan objectlar saqlanadi u to'lib qosa ozi GC ni chaqiradi va GC reference yoq objectlarni ochirib
+	reference bor objectlarni gen1 ga otkazadi
+gen1 da ham shunday hodisa yuz beradi va objectlarni gen2 ga kochiradi 
+gen2 ni hajmi ancha katta va u yerda hajmi katta objectlar saqlanadi 
+GC har safar ishga tushganda gen0 ni albatta tekshiradi a qolgan qismlarni undan kamroq tekshiradi (ozini malum bir vaqti bor)
+
+2: IDisposible
+Idisposible dan voris olgan classlarda using kalit sozi ishlidi. voris olmagan classlarni malumotini GC tozalamaydi
+
+3: ref va out
+ref va out asosan value typelarga ishlatiladi. value typelarni referenciga funksiyalar aro murojat qilishda ishlatamiz.
+ref ishlatganda ozgaruvchini qiymati bolishi shart, lekin funksiya ichida qiymat ozgartirish majburiy emas
+out ishlatganda ozgaruvchini qiymati bolishi shart emas, lekin funksiya ichida qiymat ozgartirish majburiy
